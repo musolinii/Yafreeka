@@ -36,7 +36,7 @@ npm run lint    # eslint
 - Media is rendered with **randomly generated color gradients** (CSS `linear-gradient` placeholders) instead of real image files.
 - **Infinite scroll** — more media posts are generated and appended as you scroll, forever.
 - Composer with a working "Post" button at the top of the feed.
-- "For you" / "Following" tabs filter the feed.
+- **For you / Following / Threads** tabs. The **Threads** tab is mobile-only and surfaces the text-thread timeline where the right rail is hidden.
 
 ### Right rail (threads)
 - Renders **text-only tweets** (posts with no media).
@@ -50,7 +50,15 @@ npm run lint    # eslint
 - Account card at the bottom links to your own profile.
 
 ### Floating navigation
-- Home, Explore, Messages, and Notifications render as **floating circular icons** centered at the bottom of the screen (all viewports).
+- Home, Explore, Messages, and Notifications render as **floating circular icons** centered at the bottom of the screen (**mobile-only**, `md:hidden`).
+- A second floating button sits at the **bottom-left** and links to **Explore**; it uses a safe-area-aware offset and matches the dock's height so the two align.
+
+### Mobile
+- Safe-area aware: floating dock, bottom-left button, and main content padding all respect `env(safe-area-inset-*)`; `viewport-fit=cover` is set.
+- `min-h-dvh` and `h-dvh` instead of `100vh`, avoiding mobile toolbar overlap.
+- Responsive spacing, type scale, and 44px touch targets across composer, cards, tabs, and explore/profile.
+- `overflow-x: hidden` on the root prevents accidental horizontal scroll (and the browser's swipe-to-navigate gesture).
+- Explicit `viewport` metadata (`width=device-width`, `initialScale: 1`, `themeColor`).
 
 ### State & interactivity
 - `lib/store.ts` is a lightweight **localStorage-backed store** (`useSyncExternalStore`), seeded from `lib/data.ts` and hydrated client-side.
