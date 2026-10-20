@@ -37,7 +37,7 @@ export function SidebarRight() {
   const feed = [...base, ...batch.tweets]
 
   return (
-    <aside className="sticky top-0 h-screen w-80 border-l border-border flex flex-col [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <aside className="sticky top-0 h-dvh w-80 border-l border-border flex flex-col [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div
         ref={setScrollRoot}
         className="flex-1 min-h-0 overflow-y-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

@@ -17,21 +17,21 @@ export function Composer({
   const me = users[0]
 
   return (
-    <div className="flex gap-4 p-4 border-b border-border">
+    <div className="flex gap-3 sm:gap-4 p-3 sm:p-4 border-b border-border">
       <Avatar src={me.avatar} alt={me.displayName} />
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder={placeholder}
-          className="w-full min-h-[80px] bg-transparent resize-none outline-none text-lg placeholder:text-muted-foreground"
+          className="w-full min-h-[72px] sm:min-h-[80px] bg-transparent resize-none outline-none text-base sm:text-lg placeholder:text-muted-foreground"
         />
         <div className="flex items-center justify-between mt-2">
-          <div className="flex gap-2 text-primary">
-            <button className="p-2 hover:bg-secondary/60 rounded-full">
+          <div className="flex gap-1 sm:gap-2 text-primary">
+            <button className="flex items-center justify-center h-10 w-10 hover:bg-secondary/60 rounded-full" aria-label="Add image">
               <ImageIcon size={20} />
             </button>
-            <button className="p-2 hover:bg-secondary/60 rounded-full">
+            <button className="flex items-center justify-center h-10 w-10 hover:bg-secondary/60 rounded-full" aria-label="Add emoji">
               <Smile size={20} />
             </button>
           </div>

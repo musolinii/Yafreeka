@@ -22,18 +22,18 @@ export function TweetCard({ tweet, isThread }: { tweet: Tweet; isThread?: boolea
   return (
     <article
       className={cn(
-        'flex gap-4 p-4 border-b border-border hover:bg-secondary/20 transition-colors',
+        'flex gap-3 sm:gap-4 p-3 sm:p-4 border-b border-border hover:bg-secondary/20 transition-colors',
         isThread && 'border-none',
       )}
     >
       <Avatar src={author.avatar} alt={author.displayName} />
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-sm min-w-0">
           <span className="font-semibold truncate">{author.displayName}</span>
           {author.verified && <span className="text-primary">✓</span>}
           <span className="text-muted-foreground truncate">@{author.username}</span>
           <span className="text-muted-foreground">·</span>
-          <span className="text-muted-foreground">
+          <span className="text-muted-foreground whitespace-nowrap">
             {formatDistanceToNow(new Date(tweet.createdAt), { addSuffix: true })}
           </span>
         </div>
@@ -45,36 +45,39 @@ export function TweetCard({ tweet, isThread }: { tweet: Tweet; isThread?: boolea
             </div>
           )}
         </Link>
-        <div className="flex items-center justify-between mt-3 max-w-md text-muted-foreground">
+        <div className="flex items-center justify-between mt-2 -ml-2 max-w-md text-muted-foreground">
           <Link
             href={`/${author.username}/status/${tweet.id}`}
             className="flex items-center gap-1.5 hover:text-primary group"
+            aria-label="Replies"
           >
-            <div className="p-2 group-hover:bg-primary/10 rounded-full">
+            <div className="flex items-center justify-center h-9 w-9 group-hover:bg-primary/10 rounded-full">
               <MessageCircle size={18} />
             </div>
             <span className="text-xs">{tweet.replies > 0 && tweet.replies}</span>
           </Link>
           <button
             onClick={() => actions.toggleRetweet(tweet.id)}
+            aria-label="Retweet"
             className={cn(
               'flex items-center gap-1.5 hover:text-green-500 group',
               isRetweeted && 'text-green-500',
             )}
           >
-            <div className="p-2 group-hover:bg-green-500/10 rounded-full">
+            <div className="flex items-center justify-center h-9 w-9 group-hover:bg-green-500/10 rounded-full">
               <Repeat2 size={18} />
             </div>
             <span className="text-xs">{counts.retweets > 0 && counts.retweets}</span>
           </button>
           <button
             onClick={() => actions.toggleLike(tweet.id)}
+            aria-label="Like"
             className={cn(
               'flex items-center gap-1.5 hover:text-red-500 group',
               isLiked && 'text-red-500',
             )}
           >
-            <div className="p-2 group-hover:bg-red-500/10 rounded-full">
+            <div className="flex items-center justify-center h-9 w-9 group-hover:bg-red-500/10 rounded-full">
               <Heart size={18} fill={isLiked ? 'currentColor' : 'none'} />
             </div>
             <span className="text-xs">{counts.likes > 0 && counts.likes}</span>
@@ -87,17 +90,20 @@ export function TweetCard({ tweet, isThread }: { tweet: Tweet; isThread?: boolea
             )}
             aria-label="Bookmark"
           >
-            <div className="p-2 group-hover:bg-primary/10 rounded-full">
+            <div className="flex items-center justify-center h-9 w-9 group-hover:bg-primary/10 rounded-full">
               <Bookmark size={18} fill={isBookmarked ? 'currentColor' : 'none'} />
             </div>
           </button>
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <div className="p-2">
+          <div className="hidden sm:flex items-center gap-1.5 text-muted-foreground">
+            <div className="flex items-center justify-center h-9 w-9">
               <BarChart3 size={18} />
             </div>
             <span className="text-xs">{tweet.views && tweet.views > 0 && tweet.views}</span>
           </div>
-          <button className="p-2 hover:bg-primary/10 hover:text-primary rounded-full">
+          <button
+            className="flex items-center justify-center h-9 w-9 hover:bg-primary/10 hover:text-primary rounded-full"
+            aria-label="Share"
+          >
             <Share size={18} />
           </button>
         </div>

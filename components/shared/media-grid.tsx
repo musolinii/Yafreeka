@@ -47,7 +47,7 @@ export function MediaGrid({ media, seed = 'yafreeka' }: { media: Media[]; seed?:
   if (media.length === 1) {
     return (
       <div className="mt-3 rounded-2xl overflow-hidden border border-border">
-        <MediaPlaceholder media={media[0]} seed={`${seed}-0`} className="h-64">
+        <MediaPlaceholder media={media[0]} seed={`${seed}-0`} className="h-48 sm:h-64">
           {media[0].type === 'video' ? 'Video' : 'Image'}
         </MediaPlaceholder>
       </div>
@@ -57,7 +57,7 @@ export function MediaGrid({ media, seed = 'yafreeka' }: { media: Media[]; seed?:
   return (
     <div className="mt-3 grid grid-cols-2 gap-1 rounded-2xl overflow-hidden border border-border">
       {media.slice(0, 4).map((item, index) => (
-        <MediaPlaceholder key={index} media={item} seed={`${seed}-${index}`} className="h-36">
+        <MediaPlaceholder key={index} media={item} seed={`${seed}-${index}`} className="h-28 sm:h-36">
           {item.type === 'video' ? 'Video' : 'Image'}
         </MediaPlaceholder>
       ))}
