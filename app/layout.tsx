@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { SidebarLeft } from '@/components/layout/sidebar-left'
@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   description: 'A fresh take on X',
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#020308',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,12 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="min-h-screen flex justify-center">
-          <div className="hidden md:flex">
+        <div className="min-h-dvh flex justify-center">
+          <div className="hidden md:block w-64 shrink-0">
             <SidebarLeft />
           </div>
-          <main className="flex-1 max-w-2xl border-x border-border min-h-screen pb-16 md:pb-0">{children}</main>
-          <div className="hidden lg:flex">
+          <main className="w-full max-w-2xl shrink-0 border-x border-border min-h-dvh pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
+            {children}
+          </main>
+          <div className="hidden lg:block w-80 shrink-0">
             <SidebarRight />
           </div>
         </div>

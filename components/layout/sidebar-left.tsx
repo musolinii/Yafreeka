@@ -13,7 +13,7 @@ export function SidebarLeft() {
   const me = users[0]
 
   return (
-    <aside className="sticky top-0 h-screen w-64 flex flex-col justify-between px-2 py-4">
+    <aside className="sticky top-0 h-dvh w-64 flex flex-col justify-between px-2 py-4">
       <div className="flex-1 min-h-0 flex flex-col">
         <Link href="/" className="flex items-center gap-2 px-3 py-2">
           <Avatar src="/avatars/y.svg" alt="Yafreeka" size={32} />

@@ -32,26 +32,26 @@ export default function Profile({ params }: { params: Promise<{ username: string
 
   return (
     <div>
-      <div className="h-32 bg-gradient-to-r from-primary/20 to-primary/40" />
-      <div className="px-4 -mt-12 relative">
-        <Avatar src={user.avatar} alt={user.displayName} size={80} className="border-4 border-background" />
-        <div className="mt-3 flex justify-between">
-          <div>
-            <h1 className="text-xl font-bold flex items-center gap-2">
+      <div className="h-24 sm:h-32 bg-gradient-to-r from-primary/20 to-primary/40" />
+      <div className="px-3 sm:px-4 -mt-10 sm:-mt-12 relative">
+        <Avatar src={user.avatar} alt={user.displayName} size={72} className="border-4 border-background" />
+        <div className="mt-3 flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h1 className="text-lg sm:text-xl font-bold flex items-center gap-2 truncate">
               {user.displayName}
               {user.verified && <span className="text-primary">✓</span>}
             </h1>
-            <div className="text-muted-foreground">@{user.username}</div>
+            <div className="text-muted-foreground truncate">@{user.username}</div>
           </div>
           {isMe ? (
-            <button className="bg-foreground text-background rounded-full px-4 py-1.5 text-sm font-semibold hover:bg-foreground/90 h-fit">
+            <button className="shrink-0 bg-foreground text-background rounded-full px-4 py-1.5 text-sm font-semibold hover:bg-foreground/90 h-fit">
               Edit profile
             </button>
           ) : (
             <button
               onClick={() => actions.toggleFollow(user.id)}
               className={cn(
-                'rounded-full px-4 py-1.5 text-sm font-semibold h-fit',
+                'shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold h-fit',
                 isFollowing
                   ? 'border border-border hover:bg-secondary/60'
                   : 'bg-foreground text-background hover:bg-foreground/90',
@@ -74,8 +74,7 @@ export default function Profile({ params }: { params: Promise<{ username: string
           <Calendar size={16} />
           Joined 2026
         </div>
-      </div>
-      <Tabs
+      </div>      <Tabs
         tabs={[
           { id: 'posts', label: 'Posts' },
           { id: 'replies', label: 'Replies' },
